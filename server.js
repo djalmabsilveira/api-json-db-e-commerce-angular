@@ -14,12 +14,8 @@ server.listen(port, () => {
   console.log("js");
 });
 
-server.use(
-    cors({
-        origin: true,
-        credentials: true,
-        preflightContinue: false,
-        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    })
-);
-server.options('*', cors());
+server.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://atomic-design-e-commerce-angular.vercel.app/')
+  res.header('Access-Control-Allow-Headers', '*')
+  next()
+})
